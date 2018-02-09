@@ -1,17 +1,17 @@
 FROM node:6 AS builder
 
-COPY . /home/lisk/lisk-faucet/
-RUN useradd lisk && \
-    chown lisk:lisk -R /home/lisk
-USER lisk
-RUN cd /home/lisk/lisk-faucet && \
+COPY . /home/onz/onz-faucet/
+RUN useradd onz && \
+    chown onz:onz -R /home/onz
+USER onz
+RUN cd /home/onz/onz-faucet && \
     npm install
 
 FROM node:6-alpine
 
-RUN adduser -D lisk
-COPY --chown=lisk:lisk --from=builder /home/lisk/lisk-faucet /home/lisk/lisk-faucet
+RUN adduser -D onz
+COPY --chown=onz:onz --from=builder /home/onz/onz-faucet /home/onz/onz-faucet
 
-USER lisk
-WORKDIR /home/lisk/lisk-faucet
+USER onz
+WORKDIR /home/onz/onz-faucet
 CMD ["node", "app.js"]

@@ -1,14 +1,14 @@
 const request = require('request'),
       async = require('async'),
       simple_recaptcha = require('simple-recaptcha'),
-      lisk = require('lisk-js');
+      onz = require('onz-js');
 
 module.exports = function (app) {
     app.get("/api/getBase", function (req, res) {
         async.series([
             function (cb) {
                 request({
-                    url : req.lisk + "/api/accounts/getBalance?address=" + app.locals.address,
+                    url : req.onz + "/api/accounts/getBalance?address=" + app.locals.address,
                     json : true
                 }, function (error, resp, body) {
                     if (error || resp.statusCode != 200 || !body.success) {
@@ -20,7 +20,7 @@ module.exports = function (app) {
             },
             function (cb) {
                 request({
-                    url : req.lisk + "/api/blocks/getFee",
+                    url : req.onz + "/api/blocks/getFee",
                     json : true
                 }, function (error, resp, body) {
                     if (error || resp.statusCode != 200 || !body.success) {
@@ -51,19 +51,19 @@ module.exports = function (app) {
                     amount : app.locals.amountToSend,
                     donation_address : app.locals.address,
                     totalCount : app.locals.totalCount,
-                    network : app.set("lisk network")
+                    network : app.set("onz network")
                 });
             }
         });
     });
 
-    app.post("/api/sendLisk", function (req, res) {
+    app.post("/api/sendOnz", function (req, res) {
         var error = null,
             address = req.body.address,
             captcha_response = req.body.captcha,
             ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 
-        if (!address) { error = "Missing LISK address"; }
+        if (!address) { error = "Missing ONZ address"; }
 
         if (!captcha_response) { error = "Captcha validation failed, please try again"; }
 
@@ -71,11 +71,11 @@ module.exports = function (app) {
             address = address.trim();
 
             if (address.indexOf('L') != address.length - 1 && address.indexOf('D') != address.length - 1) {
-                error = "Invalid LISK address";
+                error = "Invalid ONZ address";
             }
 
             var num = address.substring(0, address.length - 1);
-            if (isNaN(num)) { error = "Invalid LISK address"; }
+            if (isNaN(num)) { error = "Invalid ONZ address"; }
         }
 
         if (error) {
@@ -88,7 +88,7 @@ module.exports = function (app) {
                     if (error) {
                         return cb("Failed to authenticate IP address");
                     } else if (value) {
-                        return cb("This IP address has already received LISK");
+                        return cb("This IP address has already received ONZ");
                     } else {
                         return cb(null);
                     }
@@ -97,9 +97,9 @@ module.exports = function (app) {
             authenticateAddress : function (cb) {
                 req.redis.get(address, function (error, value) {
                     if (error) {
-                        return cb("Failed to authenticate LISK address");
+                        return cb("Failed to authenticate ONZ address");
                     } else if (value) {
-                        return cb("This account has already received LISK");
+                        return cb("This account has already received ONZ");
                     } else {
                         return cb(null);
                     }
@@ -138,7 +138,7 @@ module.exports = function (app) {
             cacheAddress : function (cb) {
                 req.redis.set(address, address, function (error) {
                     if (error) {
-                        return cb("Failed to cache LISK address");
+                        return cb("Failed to cache ONZ address");
                     } else {
                         return cb(null);
                     }
@@ -147,7 +147,7 @@ module.exports = function (app) {
             sendAddressExpiry : function (cb) {
                 req.redis.send_command("EXPIRE", [address, 60], function (error) {
                     if (error) {
-                        return cb("Failed to send LISK address expiry");
+                        return cb("Failed to send ONZ address expiry");
                     } else {
                         return cb(null);
                     }
@@ -155,19 +155,19 @@ module.exports = function (app) {
             },
             sendTransaction : function (cb) {
                 var amount      = app.locals.amountToSend * req.fixedPoint;
-                var transaction = lisk.transaction.createTransaction(address, amount, app.locals.passphrase);
+                var transaction = onz.transaction.createTransaction(address, amount, app.locals.passphrase);
 
                 request({
-                    url : req.lisk + "/peer/transactions",
+                    url : req.onz + "/peer/transactions",
                     method : "POST",
                     json : true,
                     headers: {
                         'Content-Type': 'application/json',
                         'nethash': app.locals.nethash,
                         'broadhash': app.locals.broadhash,
-                        'os': 'lisk-js-api',
-                        'version': app.locals.liskVersion,
-                        'minVersion': app.locals.liskMinVersion,
+                        'os': 'onz-js-api',
+                        'version': app.locals.onzVersion,
+                        'minVersion': app.locals.onzMinVersion,
                         'port': app.locals.port
                     },
                     body : {

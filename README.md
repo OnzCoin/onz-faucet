@@ -1,4 +1,4 @@
-# Lisk Faucet
+# ONZ Faucet
 
 ## Prerequisites
 
@@ -34,18 +34,18 @@ Open `config.json` and complete the following details.
 
   **NOTE:** There are two separate keypairs for development and production environments.
 
-2. Edit your Lisk connection details:
+2. Edit your ONZ node connection details:
 
   ```js
-  "lisk" : {
+  "onz" : {
       "host" : "127.0.0.1", // <-- Server IP/hostname
-      "port" : 7000,        // <-- 7000 for testnet, 8000 for mainnet
+      "port" : 10998,       // <-- 10998 for testnet, 11000 for mainnet
       "passphrase" : "",    // <-- Passphrase of faucet account
       "address" : ""        // <-- Address of faucet account
       "nethash": "",        // <-- Nethash of the network
       "broadhash": "",      // <-- Broadhash of the network
-      "version": "0.0.0a",  // <-- Expected version of lisk-core end point
-      "minVersion": "0.0.0" // <-- Minimal version of lisk-core that will be accepted
+      "version": "0.0.0a",  // <-- Expected version of onz node end point
+      "minVersion": "0.0.0" // <-- Minimal version of onz node that will be accepted
   }
   ```
 
@@ -84,7 +84,7 @@ NODE_ENV=production node app.js
 Open: [http://localhost:6000](http://localhost:6000)
 
 ## Authors
-
+- Mars Yau <mars@onzcoin.com>
 - Boris Povod <boris@crypti.me>
 - Oliver Beddows <oliver@lisk.io>
 - Max Kordek <max@lisk.io>
@@ -93,6 +93,7 @@ Open: [http://localhost:6000](http://localhost:6000)
 
 The MIT License (MIT)
 
+Copyright (c) 2017-2018 ONZ Coin
 Copyright (c) 2016-2017 Lisk  
 Copyright (c) 2014-2015 Crypti
 

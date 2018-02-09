@@ -1,5 +1,5 @@
-var lisk = require('./lisk.js');
+var onz = require('./onz.js');
 
 module.exports = function (app) {
-    lisk(app);
+    onz(app);
 }

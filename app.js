@@ -20,27 +20,27 @@ var app = express();
 client.debug_mode = true;
 
 app.set('strict routing', true);
-app.set("lisk address", "http://" + config.lisk.host + ":" + config.lisk.port);
+app.set("onz address", "http://" + config.onz.host + ":" + config.onz.port);
 
-if (config.lisk.port == 8000) {
-    app.set("lisk network", 'mainnet');
+if (config.onz.port == 11000) {
+    app.set("onz network", 'mainnet');
 } else {
-    app.set("lisk network", 'testnet');
+    app.set("onz network", 'testnet');
 }
 
-app.locals.host = config.lisk.host;
-app.locals.port = config.lisk.port;
-app.locals.nethash = config.lisk.nethash;
-app.locals.broadhash = config.lisk.broadhash;
-app.locals.liskVersion = config.lisk.version;
-app.locals.liskMinVersion = config.lisk.minVersion;
-app.locals.passphrase = config.lisk.passphrase;
-app.locals.address = config.lisk.address;
+app.locals.host = config.onz.host;
+app.locals.port = config.onz.port;
+app.locals.nethash = config.onz.nethash;
+app.locals.broadhash = config.onz.broadhash;
+app.locals.onzVersion = config.onz.version;
+app.locals.onzMinVersion = config.onz.minVersion;
+app.locals.passphrase = config.onz.passphrase;
+app.locals.address = config.onz.address;
 app.locals.amountToSend = config.amount;
 app.locals.cacheTTL = config.cacheTTL;
 
 app.use(function (req, res, next) {
-    req.lisk = app.get("lisk address");
+    req.onz = app.get("onz address");
     return next();
 });
 

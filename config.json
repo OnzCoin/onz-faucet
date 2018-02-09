@@ -16,9 +16,9 @@
                 "privateKey" : ""
             }
         },
-        "lisk" : {
+        "onz" : {
             "host" : "127.0.0.1",
-            "port" : 4000,
+            "port" : 10998,
             "passphrase" : "",
             "address" : "",
             "nethash": "",

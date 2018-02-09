@@ -8,9 +8,9 @@
                 "privateKey" : "CHANGE_ME"
             }
         },
-        "lisk" : {
+        "onz" : {
             "host" : "127.0.0.1",
-            "port" : 7000,
+            "port" : 10998,
             "passphrase" : "CHANGE_ME",
             "address" : "CHANGE_ME"
         },

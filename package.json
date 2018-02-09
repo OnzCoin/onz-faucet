@@ -1,13 +1,13 @@
 {
-  "name": "lisk-faucet",
+  "name": "onz-faucet",
   "version": "1.0.1",
-  "description": "Lisk faucet application",
+  "description": "ONZ faucet application",
   "repository": {
     "type": "git",
-    "url": "git@github.com:LiskHQ/lisk-faucet.git"
+    "url": "git@github.com:OnzCoin/onz-faucet.git"
   },
   "private": true,
-  "author": "Boris Povod <boris@crypti.me>, Max Kordek <max@lisk.io>",
+  "author": "Mars Yau <mars@onzcoin.com>, Boris Povod <boris@crypti.me>, Max Kordek <max@lisk.io>",
   "license": "MIT",
   "main": "app.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "async": "^0.9.0",
     "body-parser": "^1.18.2",
     "express": "~3.21.2",
-    "lisk-js": "^0.5.0",
+    "onz-js": "git+https://github.com/OnzCoin/onz-js.git#master",
     "method-override": "^2.3.10",
     "moment": "^2.8.3",
     "multer": "^1.3.0",
