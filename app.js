@@ -1,3 +1,4 @@
+const fs = require('fs');
 var express = require('express'),
     config = require('./config.json').configuration,
     development = config.development,
@@ -80,6 +81,22 @@ app.listen(app.get('port'), app.get('host'), function (err) {
     if (err) {
         console.log(err);
     } else {
-        console.log("Server started at " + app.get('host') + ":" + app.get('port'));
+        if (config.ssl.enable) {
+            const privateKey = fs.readFileSync(config.ssl.sslkey);
+            const certificate = fs.readFileSync(config.ssl.sslcert);
+            const https = require('https').createServer({
+                key: privateKey,
+                cert: certificate,
+                ciphers: 'ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:' + 'ECDHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA384:DHE-RSA-AES256-SHA384:ECDHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA256:HIGH:' + '!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!SRP:!CAMELLIA'
+            }, app);
+
+            https.listen(config.ssl.sslport, config.ssl.sslhost, error => {
+                if (!err) {
+                    console.log("Server (SSL) started at " + config.ssl.sslhost + ":" + config.ssl.sslport);
+                } else {
+                    console.log("Server (SSL) start error");
+                }
+            });
+        }
     }
 });

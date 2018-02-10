@@ -13,12 +13,12 @@ body {
 .msg {
     text-align: center;
     font-size: 13px;
-    color: #dcd6cf;
+    color: #aaaaaa;
 }
 
 .msg a {
-    text-decoration: none;
-    color: #9c8678;
+    text-decoration: underline;
+    color: #aaaaaa;
 }
 
 .msg a:active, .msg a:focus, .msg a:hover {
@@ -50,6 +50,7 @@ body {
 
 .main-block .testnet-notice {
     text-align: center;
+    color: #ff8765;
 }
 
 .main-block .send-form {
@@ -74,11 +75,11 @@ body {
     border-top: none;
     border-left: none;
     border-right: none;
-    border-bottom: 1px solid #dcd6cf;
+    border-bottom: 1px solid #999999;
     display: block;
     width: 100%;
     background: none;
-    color: #dcd6cf;
+    color: #333333;
     font-size: 16px;
     text-align: center;
 }
@@ -103,11 +104,11 @@ body {
     -ms-transition: background-color 0.3s;
     transition: background-color 0.3s;
     color: #fff;
-    background: #0288d1;
+    background: linear-gradient(45deg, #ea3e4f 0%, #ff8765 100%);
 }
 
 .button:hover {
-    background: #027ec2;
+    background: linear-gradient(45deg, #ea3e4f 0%, #ea3e4f 100%);
 }
 
 .transactions-list {
@@ -143,7 +144,7 @@ body {
 }
 
 .footer {
-    color: #dcd6cf;
+    color: #777777;
     font-weight: bold;
     text-align: center;
     width: 100%;
@@ -153,17 +154,18 @@ body {
 }
 
 .footer a {
-    color: #9c8678;
-    text-decoration: none;
+    color: #777777;
+    text-decoration: underline;
 }
 
 .footer a:active, .msg a:focus, .msg a:hover {
+    color: #777777;
     text-decoration: underline;
 }
 
 .footer a:visited {
     text-decoration: none;
-    color: #9c8678;
+    color: #777777;
 }
 
 .error {
@@ -179,7 +181,7 @@ body {
 
 .txId {
     padding: 5px;
-    background-color: #0288d1;
+    background-color: #19d9b4;
 }
 
 .txId p {

@@ -70,12 +70,9 @@ module.exports = function (app) {
         if (address) {
             address = address.trim();
 
-            if (address.indexOf('L') != address.length - 1 && address.indexOf('D') != address.length - 1) {
+            if (address.indexOf('ONZ') != 0 || address.length != 36) {
                 error = "Invalid ONZ address";
             }
-
-            var num = address.substring(0, address.length - 1);
-            if (isNaN(num)) { error = "Invalid ONZ address"; }
         }
 
         if (error) {

@@ -9,7 +9,7 @@
             }
         },
         "production": {
-            "host": "0.0.0.0",
+            "host": "127.0.0.1",
             "port": 6000,
             "captcha" : {
                 "publicKey" : "",
@@ -23,8 +23,8 @@
             "address" : "",
             "nethash": "",
             "broadhash": "",
-            "version": "0.0.0a",
-            "minVersion": "0.0.0"
+            "version": "0.9.12",
+            "minVersion": "0.9.12"
         },
         "redis" : {
             "host" : "127.0.0.1",
@@ -33,6 +33,13 @@
         },
         "amount" : 1,
         "cacheTTL" : 43200,
-        "fixedPoint" : 100000000
+        "fixedPoint" : 100000000,
+        "ssl": {
+            "enable": false,
+            "sslhost": "0.0.0.0",
+            "sslport": 443,
+            "sslkey": "/path/onzcoin.com.key",
+            "sslcert": "/path/onzcoin.com.crt"
+        }
     }
 }
