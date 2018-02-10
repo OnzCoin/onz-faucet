@@ -5,6 +5,17 @@
 - Node.js + npm (https://github.com/nodesource/distributions)
 - Redis (http://redis.io)
 
+- PM2 (https://github.com/Unitech/pm2) -- PM2 manages the node process for Onz Faucet and handles log rotation (Highly Recommended)
+
+  `sudo npm install -g pm2`
+  
+- PM2-logrotate (https://github.com/pm2-hive/pm2-logrotate) -- Manages PM2 logs
+
+  ```
+  pm2 install pm2-logrotate
+  pm2 set pm2-logrotate:max_size 100M
+  ```
+
 ## Installation
 
 1. Install node modules:
@@ -80,6 +91,19 @@ Production:
 ```
 NODE_ENV=production node app.js
 ```
+
+Once the process is verified as running correctly, `CTRL+C` and start the process with `PM2`. This will fork the process into the background and automatically recover the process if it fails.
+
+`pm2 start pm2-faucet.json`
+
+After the process is started its runtime status and log location can be found by issuing this statement:
+
+`pm2 list`
+
+To stop ONZ Faucet after it has been started with `PM2`, issue the following command:
+
+`pm2 stop onz-faucet`
+
 
 Open: [http://localhost:6000](http://localhost:6000)
 
