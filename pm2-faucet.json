@@ -1,0 +1,18 @@
+{
+	"apps": [{
+		"name": "onz-faucet",
+		"script": "app.js",
+		"cwd": ".",
+		"pid_file": "./pids/faucet.app.pid",
+		"out_file": "./logs/faucet.app.log",
+		"error_file": "./logs/onz.app.err",
+		"log_date_format": "YYYY-MM-DD HH:mm:ss SSS",
+		"watch": false,
+		"kill_timeout" : 10000,
+		"max_memory_restart": "512M",
+    "node_args": "--max_old_space_size=512",
+    "env": {
+      "NODE_ENV": "production"
+    }
+	}]
+}
